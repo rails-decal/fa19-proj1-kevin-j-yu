@@ -11,3 +11,6 @@
     <p>Health: <%= pokemon.health %></p>
     <p>Pokedex Number: <%= pokemon.ndex %></p>
 <% end %>
+<% if @trainer == current_trainer %>
+    <%= button_to "Create!", "/pokemons/new", :class => "button medium", :method => :get %>
+<% end %>

@@ -4,7 +4,7 @@
 
 # Q1: How are the random Pokemon appearing? What is the common factor between all the possible Pokemon that appear? *
 In `seeds.rb`, we can see that other than initializing common trainers, we have the four Pokemon Squirtle, Charmander, Bulbasaur, and Pikachu, each with the correct Pokedex number, name, and level. What is shared is their level, which is randomized to a number between 1 and 20. 
-```Ruby
+```ruby
 [['Squirtle', 7], ['Charmander', 4], ['Bulbasaur', 1], ['Pikachu', 25]].each do |name, ndex|
   Pokemon.create(
     name: name,
@@ -21,12 +21,20 @@ DeNero
 
 # Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here?
 When running `rails routes`, I noticed that the `trainer#show` is referenced with a dynamic path `/trainers/:id(.:format)`. Therefore, I had
-```Ruby
+```ruby
 redirect_to "/trainers/#{current_trainer.id}"
 ```
 Using double quotes, I could format the string with the `id` of a trainer. It cannot be a static path as every trainer is unique with its own personal trainer profile page. Taking advantage of the question 1's Devise gem usage, I could reference the current trainer and gets its id.
 
 # Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form.
+This line is placed in the else case of checking if `@pokemon.save` was successful or not. At the end of `views/layouts/application.html.erb`, the following code:
+```erb
+<main role="main">
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+</main>
+```
+will render any necceasry messages by looping over the flash hash and display any messages contained within it.
 
 # Give us feedback on the project and decal below!
 

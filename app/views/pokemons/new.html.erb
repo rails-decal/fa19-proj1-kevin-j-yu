@@ -1,0 +1,13 @@
+<h3>Make a New Pokemon!</h3>
+
+<%= simple_form_for @pokemon, url: '/pokemons/create' do |f| %>
+    <p><%= f.input :name %></p>
+    <%= f.collection_radio_buttons(
+        :ndex, (1..20).map {|ndex| [ndex, ndex]}, :first, :last
+    ) do |b| %>
+    <div class="pokemon-choice-container">
+        <%= b.label { image_tag("pokemon/#{b.text}.png") + b.radio_button } %>
+    </div>
+    <% end %>
+    <p><%= f.button :submit, class: "create-pokemon-btn" %></p>
+<% end %>
