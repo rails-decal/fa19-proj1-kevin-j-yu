@@ -22,9 +22,9 @@ DeNero
 # Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here?
 When running `rails routes`, I noticed that the `trainer#show` is referenced with a dynamic path `/trainers/:id(.:format)`. Therefore, I had
 ```ruby
-redirect_to "/trainers/#{current_trainer.id}"
+redirect_to "/trainers/#{trainer.id}"
 ```
-Using double quotes, I could format the string with the `id` of a trainer. It cannot be a static path as every trainer is unique with its own personal trainer profile page. Taking advantage of the question 1's Devise gem usage, I could reference the current trainer and gets its id.
+Using double quotes, I could format the string with the `id` of a trainer. It cannot be a static path as every trainer is unique with its own personal trainer profile page. The `trainer` variable is instanitated from the original `pokemon`.
 
 # Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form.
 This line is placed in the else case of checking if `@pokemon.save` was successful or not. At the end of `views/layouts/application.html.erb`, the following code:
@@ -37,5 +37,6 @@ This line is placed in the else case of checking if `@pokemon.save` was successf
 will render any necceasry messages by looping over the flash hash and display any messages contained within it.
 
 # Give us feedback on the project and decal below!
+Pretty cool
 
 # Extra credit: Link your Heroku deployed app
